@@ -1,0 +1,11 @@
+{
+  "name": "vanilla_todo",
+  "version": "1.0.0",
+  "description": "A simple to-do list built in vanilla Javascript and HTML. No consmetics.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WH",
+  "license": "ISC"
+}
