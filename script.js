@@ -4,8 +4,12 @@ var taskList = document.getElementById("taskList"); //assign the task list <ul> 
 var taskTextBox = document.getElementById("taskTextBox"); //assign the new task textbox to taskTextBox var
 
 //add eventlistener to "Add" button and pass the new task name by reading from textbox, inside an anonymouse function
+//if statement checks if textbox is empty, if its empty, task is not added.
 document.getElementById("taskAddBtn").addEventListener("click", function() {
-  addTask(taskTextBox.value);
+  if(taskTextBox.value != ""){
+    addTask(taskTextBox.value);
+  }
+    
 });
 
 //function that is invoked by anonymouse function when add button is clicked
