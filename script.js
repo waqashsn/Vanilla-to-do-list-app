@@ -9,8 +9,16 @@ document.getElementById("taskAddBtn").addEventListener("click", function() {
   if(taskTextBox.value != ""){
     addTask(taskTextBox.value);
   }
-    
 });
+
+//add task to list on pressing Enter key
+//add eventlistern to textbox for Enter key, call taskAddBtn click event when Enter Key is pressed. 
+document.getElementById("taskTextBox").addEventListener("keyup",  function(event) {
+    event.preventDefault();
+    if(event.keyCode == 13) {
+        document.getElementById("taskAddBtn").click();
+    }
+})
 
 //function that is invoked by anonymouse function when add button is clicked
 function addTask(taskName) {
