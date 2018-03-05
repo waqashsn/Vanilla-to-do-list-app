@@ -4,6 +4,7 @@ var taskTextBox = document.getElementById("taskTextBox"); //assign the new task 
 var listArea = document.getElementById("listArea");
 var taskCount = document.getElementById("counter"); //assign the task counter element to taskCount var
 taskCount.innerText = taskCounter(); //print the current number of tasks
+var taskIdentifier = taskCounter(); //assign current task counter value to taskIdentifier to be used to uniquely identify a tasks and will be assigned to them upon creation
 
 //add eventlistener to "Add" button and pass the new task name by reading from textbox, inside an anonymouse function
 //if statement checks if textbox is empty, if its empty, task is not added.
@@ -39,8 +40,9 @@ function removeTask(taskId) {
 
 //function that is invoked by anonymouse function when add button is clicked
 function addTask(taskName) {
-    //assigning each task a unique id which is concatenation of the task name (with spaces replaced with _) and a randonly generated number
-    var taskUniqueId = taskName.replace(/ /g, "_") + String((Math.floor(Math.random() * 100) + 1)); // returns a number between 1 and 100 and concatenates it to taskname with underscores
+    //assigning each task a unique id which is concatenation of the task name (with spaces replaced with _) and taskIdentifier
+    taskIdentifier++; //increment the task identifier by 1 so we can assign it to task being created
+    var taskUniqueId = taskName.replace(/ /g, "_") + String(taskIdentifier); // create a unique task id for task being created by concatenating task name with taskIdentifier
     //create and set attributes of a checkbox element
     var newTaskCheckbox = document.createElement("input");
     newTaskCheckbox.type = "checkbox";
