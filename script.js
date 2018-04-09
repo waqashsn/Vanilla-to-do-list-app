@@ -3,8 +3,8 @@ var taskList = document.getElementById("taskList"); //assign the task list <ul> 
 var taskTextBox = document.getElementById("taskTextBox"); //assign the new task textbox to taskTextBox var
 var listArea = document.getElementById("listArea");
 var taskCount = document.getElementById("counter"); //assign the task counter element to taskCount var
-taskCount.innerText = taskCounter(); //print the current number of tasks
 var taskIdentifier = taskCounter(); //assign current task counter value to taskIdentifier to be used to uniquely identify a tasks and will be assigned to them upon creation
+taskCount.innerText = taskIdentifier; //print the current number of tasks
 
 //add eventlistener to "Add" button and pass the new task name by reading from textbox, inside an anonymouse function
 //if statement checks if textbox is empty, if its empty, task is not added.
@@ -49,10 +49,10 @@ function addTask(taskName) {
     newTaskCheckbox.name = taskUniqueId;
     newTaskCheckbox.value = taskName;
     newTaskCheckbox.id = taskUniqueId;
-    var label = document.createElement("label");//create and set attributes of a label element to go with the checkbox
+    var label = document.createElement("label"); //create and set attributes of a label element to go with the checkbox
     label.htmlFor = taskUniqueId;
     label.id = "labelFor" + taskUniqueId; 
-    label.appendChild(document.createTextNode(taskName));//add the task name text to the label
+    label.appendChild(document.createTextNode(taskName)); //add the task name text to the label
     //add event listener to the newly created task's checkbox to add remove functionality when checkbox status changes
     newTaskCheckbox.addEventListener("change", function(){
         removeTask(newTaskCheckbox.id);
@@ -61,7 +61,7 @@ function addTask(taskName) {
     var newTaskLi = document.createElement("li"); //create a list item node
     newTaskLi.id = taskUniqueId; //assign same unique task id to the li
     newTaskLi.appendChild(newTaskCheckbox); //append task checkbox to the li
-    newTaskLi.appendChild(label);//append label to the li
+    newTaskLi.appendChild(label); //append label to the li
     taskList.appendChild(newTaskLi); //add list item to ul node
     taskCount.innerText = taskCounter(); //update the task counter after addition
     taskTextBox.value = ""; //Empty the textbox after adding task
