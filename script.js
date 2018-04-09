@@ -6,6 +6,17 @@ var taskCount = document.getElementById("counter"); //assign the task counter el
 taskCount.innerText = taskCounter(); //print the current number of tasks
 var taskIdentifier = taskCounter(); //assign current task counter value to taskIdentifier to be used to uniquely identify a tasks and will be assigned to them upon creation
 
+// $(document).ready(function() {
+//     if (localStorage.length) {
+//         for (var i = 0; i < localStorage.length; i++){
+//             prevTask = localStorage.getItem(localStorage.key(i));
+//             console.log(prevTask);
+//             addTask(taskTextBox.prevTask);
+//         }
+//     }
+// });
+
+
 //add eventlistener to "Add" button and pass the new task name by reading from textbox, inside an anonymouse function
 //if statement checks if textbox is empty, if its empty, task is not added.
 document.getElementById("taskAddBtn").addEventListener("click", function() {
@@ -25,7 +36,7 @@ document.getElementById("taskTextBox").addEventListener("keyup",  function(event
 
 //function to see how many tasks are in the list
 function taskCounter() {
-    if(taskList.childElementCount != 0) {
+    if (taskList.childElementCount != 0) {
         return taskList.childElementCount; //return how many chilren <li>s the <ul> have
     }
     else return 0;
@@ -34,7 +45,6 @@ function taskCounter() {
 //function that removes the task by receiving the unique taskid
 function removeTask(taskId) {
     document.getElementById(taskId).remove(); //remove the element with passed taskId
-    //console.log(itemId); 
     taskCount.innerText = taskCounter(); //print the updated task counter after removal
 }
 
@@ -42,8 +52,9 @@ function removeTask(taskId) {
 function addTask(taskName) {
     //assigning each task a unique id which is concatenation of the task name (with spaces replaced with _) and taskIdentifier
     taskIdentifier++; //increment the task identifier by 1 so we can assign it to task being created
-    var taskUniqueId = taskName.replace(/ /g, "_") + String(taskIdentifier); // create a unique task id for task being created by concatenating task name with taskIdentifier
+    var taskUniqueId = taskName.replace(/\s+/g, "_") + String(taskIdentifier); // create a unique task id for task being created by concatenating task name with taskIdentifier
     //create and set attributes of a checkbox element
+    console.log(taskUniqueId);
     var newTaskCheckbox = document.createElement("input");
     newTaskCheckbox.type = "checkbox";
     newTaskCheckbox.name = taskUniqueId;
@@ -58,6 +69,8 @@ function addTask(taskName) {
         removeTask(newTaskCheckbox.id);
     });
     
+    localStorage.setItem(taskUniqueId, document.getElementById(taskUniqueId).value);
+
     var newTaskLi = document.createElement("li"); //create a list item node
     newTaskLi.id = taskUniqueId; //assign same unique task id to the li
     newTaskLi.appendChild(newTaskCheckbox); //append task checkbox to the li
